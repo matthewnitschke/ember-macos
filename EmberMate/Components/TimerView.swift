@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct TimerView: View {
-    @ObservedObject var appState: AppState
+    @EnvironmentObject private var appState: AppState
 
     @Environment(\.openURL) var openURL
     

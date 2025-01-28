@@ -10,8 +10,8 @@ import SwiftUI
 import UserNotifications
 
 struct MugControlView: View {
-    @ObservedObject var emberMug: EmberMug
-    @ObservedObject var appState: AppState
+    @EnvironmentObject private var emberMug: EmberMug
+    @EnvironmentObject private var appState: AppState
 
     var body: some View {
         VStack {
@@ -71,7 +71,7 @@ struct MugControlView: View {
             }
 
             if !appState.timers.isEmpty {
-                TimerView(appState: appState)
+                TimerView()
             }
 
         }.padding(10).background(LinearGradient(

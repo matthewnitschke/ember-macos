@@ -10,7 +10,7 @@ import SwiftUI
 import CoreBluetooth
 
 struct ConnectMugView: View {
-    @ObservedObject var bluetoothManager: BluetoothManager
+    @EnvironmentObject private var bluetoothManager: BluetoothManager
     @State private var selectedMug: CBPeripheral?
 
     var body: some View {
@@ -27,8 +27,7 @@ struct ConnectMugView: View {
                     .background(Color.black.opacity(0.29))
                     .cornerRadius(9)
             } else {
-                SelectDeviceView(bluetoothManager: bluetoothManager)
-
+                SelectDeviceView()
             }
         }.padding(20).frame(width: 350, height: 300)
         .background(LinearGradient(
@@ -41,7 +40,7 @@ struct ConnectMugView: View {
 }
 
 struct SelectDeviceView: View {
-    @ObservedObject var bluetoothManager: BluetoothManager
+    @EnvironmentObject private var bluetoothManager: BluetoothManager
     @State private var selectedMug: CBPeripheral?
 
     var body: some View {

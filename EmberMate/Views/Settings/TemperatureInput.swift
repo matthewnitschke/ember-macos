@@ -11,22 +11,23 @@ import AppKit
 import UserNotifications
 
 struct TemperatureInput: View {
+    @EnvironmentObject private var emberMug: EmberMug
+    
     @Binding var value: Double
-    @Binding var unit: TemperatureUnit
 
     var body: some View {
         TextField(
             "Temperature",
             text: Binding(
                 get: {
-                    if unit == .celcius {
+                    if emberMug.temperatureUnit == .celcius {
                         String(format: "%.0f", value)
                     } else {
                         String(format: "%.0f", (value * 9/5) + 32)
                     }
                 },
                 set: {
-                    if unit == .celcius {
+                    if emberMug.temperatureUnit == .celcius {
                         value = Double($0)!
                     } else {
                         value = (Double($0)! - 32) * 5/9
